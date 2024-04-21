@@ -1,66 +1,58 @@
 <template>
-  <div class="container">
-    <Header title=" Task Tracker" />
+  <div>
+    <router-view></router-view>
+    <ToastContainer />
   </div>
 </template>
 
 <script>
-import Header from "./components/Header.vue";
+import { createRouter, createWebHistory } from 'vue-router';
+import Index from './pages/Index.vue';
+import Acceuil from './pages/Acceuil.vue';
+import Connexion from './pages/Connexion.vue';
+import Inscription from './pages/Inscription.vue';
+import Acceuiladmin from './pages/Acceuiladmin.vue';
+import Categories from './pages/Categorie.vue';
+import Ajoutercategorie from './pages/Ajoutercategorie.vue';
+import Ajouterproduit from './pages/Ajouterproduit.vue';
+import Monpanier from './pages/Monpanier.vue';
+import Modifierproduit from './pages/Modifierproduit.vue';
+import Modifiercategorie from './pages/Modifiercategorie.vue';
+import { createApp } from 'vue';
+import 'vue-toastify/dist/vue-toastify.css';
+import { ToastContainer } from 'vue-toastify';
+
+const routes = [
+  { path: '/', component: Index },
+  { path: '/acceuil', component: Acceuil },
+  { path: '/connexion', component: Connexion },
+  { path: '/inscription', component: Inscription },
+  { path: '/acceuiladmin', component: Acceuiladmin },
+  { path: '/categorie', component: Categories },
+  { path: '/addcategorie', component: Ajoutercategorie },
+  { path: '/addproduit', component: Ajouterproduit },
+  { path: '/editproduit/:id', component: Modifierproduit },
+  { path: '/editcategorie/:id', component: Modifiercategorie },
+  { path: '/panier', component: Monpanier },
+];
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes,
+});
+
 export default {
-  name: "App",
   components: {
-    Header,
+    ToastContainer,
+  },
+  setup() {
+    return {
+      router,
+    };
   },
 };
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: "Poppins", sans-serif;
-}
-
-.container {
-  max-width: 500px;
-  margin: 30px auto;
-  overflow: auto;
-  min-height: 300px;
-  border: 1px solid steelblue;
-  padding: 30px;
-  border-radius: 5px;
-}
-
-.btn {
-  display: inline-block;
-  background: #000;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  margin: 5px;
-  border-radius: 5px;
-  cursor: pointer;
-  text-decoration: none;
-  font-size: 15px;
-  font-family: inherit;
-}
-
-.btn:focus {
-  outline: none;
-}
-
-.btn:active {
-  transform: scale(0.98);
-}
-
-.btn-block {
-  display: block;
-  width: 100%;
-}
+/* Votre CSS ici */
 </style>
